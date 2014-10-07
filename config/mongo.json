@@ -1,0 +1,7 @@
+{
+	"username": "david",
+	"password": "sportpass",
+	"url": "kahana.mongohq.com",
+	"port": "10052",
+	"dbname": "sportblog"
+}

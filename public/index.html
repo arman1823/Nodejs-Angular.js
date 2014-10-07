@@ -1,0 +1,70 @@
+<html ng-app="schoolApp">
+<head>
+<meta charset="utf8"></meta>
+	<title>
+		StuBoard
+	</title>
+<link rel="stylesheet" href="stylesheets/homepage.css">
+<link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+<link rel="icon" href="images/favicon.png">
+
+
+</head>
+
+<body ng-controller="LayoutController">
+<!-- div principale -->
+<div class="row">
+	<div class="col-xs-3 eat_padding side_bar" ng-show="logged">
+		<div class="title-section">
+				<span ng-show="selectedSection === null">Choisissez la section et la classe</span>
+				<span ng-show="selectedSection !== null">{{sections[selectedSection].name}}</span>
+		</div>
+		<ul class="list-group">
+			
+			<li ng-repeat="section in sections" class="list-group-item list-clickable" ng-click="onClickSection($index)">
+				{{section.name}}
+				<ul class="list-group" ng-if="selectedSection === $index">
+					<li class="list-group-item" ng-repeat="classe in classes">{{classe.name}}</li>
+				</ul>
+			</li>
+		</ul>
+		<div class="userPanel">
+			<button class="btn btn-default"><span class="glyphicon glyphicon-user glyphicon-changes" ng-click="onc"></span></button>
+			<button class="btn btn-default"><span class="glyphicon glyphicon-wrench glyphicon-changes"></span></button>
+			<button class="btn btn-default" ng-click="logout()"><span>Déconnexion</span></button>
+		</div>
+	</div>
+
+
+	<div class="eat_padding" ng-class="{'col-xs-9': logged}">
+		<div class="barre" ng-show="logged">
+			<span class="infos-user">{{user.firstname}} {{user.lastname}} ({{user.points}} Points)</span>
+			<a class="btn btn-success" ng-show="selectedSection !==null" href="#/thread/add/{{sections[selectedSection]._id}}">
+			
+				<span class="glyphicon glyphicon-pencil" title="Poser une question"></span>
+			</a>
+			<div class="barre-erreur" ng-class="error.type = error" ng-show="error.new">{{error.message}}</div>
+		</div>
+
+		<div ng-view ng-class="{'centerView': logged}"></div>
+
+	</div>
+</div>
+
+
+<script type="text/javascript" src="/vendor/angular/angular.min.js"></script>
+<script type="text/javascript" src="/vendor/angular-route/angular-route.min.js"></script>
+<script type="text/javascript" src="/javascripts/angular/definitions.js"></script>
+<script type="text/javascript" src="/javascripts/angular/controller/indexController.js"></script>
+<script type="text/javascript" src="/javascripts/angular/controller/layoutController.js"></script>
+<script type="text/javascript" src="/javascripts/angular/controller/accueilController.js"></script>
+<script type="text/javascript" src="/javascripts/angular/controller/threadController.js"></script>
+<script type="text/javascript" src="/javascripts/angular/controller/threadDetailController.js"></script>
+<script type="text/javascript" src="/javascripts/angular/service/schoolAPIService.js"></script>
+<script type="text/javascript" src="/javascripts/angular/service/user.js"></script>
+<script type="text/javascript" src="/javascripts/angular/modules/angular-timeago/src/timeAgo.js"></script>
+<script type="text/javascript" src="/javascripts/angular/core.js"></script>
+
+
+</body>
+</html>
