@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+var debug = require('debug')('school');
+var app = require('../app');
+var model = require('../model/model');
+
+app.set('port', process.env.PORT || 3000);
+model.connect(function(){
+	
+
+	
+	var server = app.listen(app.get('port'), function() {
+	  debug('Express server listening on port ' + server.address().port);
+	});
+});

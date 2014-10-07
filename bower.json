@@ -1,0 +1,8 @@
+{
+	"name": "school",
+	"dependencies": {
+		"angular": "1.2.18",
+		"angular-route": "*",
+		"bootstrap": "3.1.1"
+	}
+}
